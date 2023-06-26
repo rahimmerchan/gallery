@@ -7,6 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import NewPage from './components/newPage.jsx';
+import ViewPage from './Pages/ViewPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <NewPage/>
+  },
+  {
+    path: "/viewpage",
+    element: <ViewPage/>
   }
 ]);
 
