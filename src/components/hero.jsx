@@ -5,7 +5,7 @@ function Hero() {
     const navigate = useNavigate();
 
     function openPage() {
-        navigate('/newpage');
+        navigate('/menu');
     }
     return (
       <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
