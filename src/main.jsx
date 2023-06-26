@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import NewPage from './components/newPage.jsx';
 import ViewPage from './Pages/ViewPage.jsx';
+import Menu from './MainMenu/Menu.jsx'
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/viewpage",
     element: <ViewPage/>
+  },
+  {
+    path: "/menu",
+    element: <Menu/>
   }
 ]);
 
