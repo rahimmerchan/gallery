@@ -9,7 +9,7 @@ function Header() {
     }
 
     function openPage2() {
-        navigate('/newpage');
+        navigate('/viewpage');
     }
 
     return (
