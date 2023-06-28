@@ -103,7 +103,7 @@ function App() {
   }
 
   return (
-    <>
+    <div className="my-body">
       <Header />
       <Title />
 
@@ -123,7 +123,7 @@ function App() {
       {popup && <Popup image={imageSelected} handleClose={closePopup} />}
 
       <Foot />
-    </>
+    </div>
   );
 }
 export default App;

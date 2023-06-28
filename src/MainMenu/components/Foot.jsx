@@ -1,11 +1,12 @@
 function Foot() {
-    return (
-        <>
-            <h4 id="foot">
-                site name
-            </h4>
-        </>
-    )
+  return (
+    <>
+      <div className="footer">
+        <p id="sitename">IMAGE VOYAGE</p>
+        <span className="line" />
+      </div>
+    </>
+  );
 }
 
-export default Foot
+export default Foot;

@@ -25,13 +25,18 @@
   background-size: cover;
   /* to prevent it from moving back and forth when border is added/removed */
   border: 2px dashed transparent;
+  border-radius: 1rem;
+}
+
+.img {
+  background-image: var(--image);
 }
 
 .img:hover {
-  background-image: url("/assets/images/edit-icon.png") !important;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-image: url("/assets/images/edit-icon.png"), var(--image) !important;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
   border: 2px dashed black;
 }
 
@@ -41,8 +46,20 @@
   margin-top: 40px;
 }
 
-#foot {
-  display: flex;
-  margin-left: 150px;
-  margin-top: 50px;
+.my-body {
+  position: relative;
+}
+
+.my-body::after {
+  content: "";
+  display: block;
+  height: 150px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  margin-top: 2rem;
+  width: 100%;
+  height: 3rem;
 }

@@ -129,14 +129,7 @@ function ViewPage() {
 
         <div className="footer">
           <p id="sitename">IMAGE VOYAGE</p>
-          <div
-            style={{
-              width: "15%",
-              height: "0px",
-              border: "2px solid",
-              color: "#9E9E9E",
-            }}
-          ></div>
+          <span className="line" />
         </div>
       </div>
     </>

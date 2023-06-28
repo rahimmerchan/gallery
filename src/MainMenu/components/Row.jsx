@@ -9,7 +9,8 @@ function Row({ images, handleOpen }) {
             handleOpen(image);
           }}
           className="img"
-          style={{ backgroundImage: `url(${image.url})` }}
+          style={{ "--image": `url(${image.url})` }}
+          // style={{ backgroundImage: `url(${image.url})` }}
           key={i}
         ></button>
       ))}

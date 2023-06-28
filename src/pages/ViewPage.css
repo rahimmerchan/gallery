@@ -1,3 +1,7 @@
+body {
+  overflow-x: hidden;
+}
+
 .background {
   background-color: #292929;
   position: fixed;
@@ -124,10 +128,11 @@
 }
 
 .footer {
-  position: fixed;
+  position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
+  margin-left: 100px;
   text-align: left;
   display: flex;
   align-items: center;
@@ -137,5 +142,12 @@
 #sitename {
   font-size: 12px;
   color: #9e9e9e;
-  margin: 1% 2% 1% 5%;
+  margin: 1% 2% 1% 0;
+}
+
+.line {
+  width: 15%;
+  height: 0px;
+  border: 2px solid;
+  color: #9e9e9e;
 }
