@@ -21,8 +21,8 @@ function Header() {
 
       
       <div className="col-md-3 text-end mx-3">
-      <button type="button" className="btn me-2 button-outline" onClick={() => openPage('/login')}>Login</button>
-        <button type="button" className="btn button-color button-outline"  onClick={openSignUp}>Sign-up</button>
+      <button type="button" style = {{zIndex: 10}} className="btn me-2 button-outline" onClick={() => openPage('/login')}>Login</button>
+      <button type="button" className="btn button-color button-outline"  onClick={openSignUp}>Sign-up</button>
       </div>
     </header>
   );

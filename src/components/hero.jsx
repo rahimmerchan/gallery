@@ -14,16 +14,16 @@ function Hero() {
             src="/assets/images/image-7.png"
             className="d-block mx-lg-auto img-fluid custom-image"
             alt="Bootstrap Themes"
-            width="700"
-            height="600"
+            width="600"
+            height="auto"
             loading="lazy"
-            style={{ marginTop: '-250px' }}
+            style={{ marginTop: '-150px' }}
           />
         </div>
         <div className="col-lg-6 py-5">
           <h1
             className="display-5 fw-bold text-body-emphasis lh-1 mb-4 px-5"
-            style={{ marginTop: '100px', fontSize: '80px' }}
+            style={{fontSize: '80px' }}
           >
             <span>Transforming</span> <br />
             <span style ={{marginLeft: "10px"}}>Ideas into Visual</span> <br />
@@ -46,7 +46,7 @@ function Hero() {
         </div>
   
         <div className="container text-center">
-          <div className="d-flex justify-content-center" style={{ marginLeft: '830px', marginTop: '-80px'}}>
+          <div className="d-flex justify-content-center" style={{ marginLeft: '65%', marginTop: '-95px'}}>
             <div>
               <a href="https://github.com/ericnem" target="_blank">
                 <img
