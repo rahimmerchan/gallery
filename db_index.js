@@ -1,11 +1,11 @@
-/*import { createConnection } from "mysql";
+import { createConnection } from "mysql";
 
 const db = createConnection({
-  host: "database-1.c2dp1ljsjrom.us-east-1.rds.amazonaws.com",
-  port: "3306",
-  user: "admin",
-  password: "ThisIsGallery",
-  database: "Gallery_db",
+  host: "",
+  port: "",
+  user: "",
+  password: "",
+  database: "",
 });
 
 db.connect(err=> {
@@ -14,4 +14,4 @@ db.connect(err=> {
     return;
   }
   console.log("Database Connected");
-});*/
+});
