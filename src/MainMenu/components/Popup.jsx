@@ -6,7 +6,7 @@ function Popup({ image, handleClose }) {
 
   const handleSave = () => {
     // send data to api
-    console.log(photo.name);
+    console.log(photo);
     handleClose();
   };
 
@@ -48,9 +48,9 @@ function Popup({ image, handleClose }) {
     <>
       <div className="backdrop">
         <div id="popup">
-          <div className="container" id="content-container">
+          <div className="my-container" id="content-container">
             {/* Photo section */}
-            <div className="container" id="photo-container">
+            <div className="my-container" id="photo-container">
               {/* Photo uploader */}
               <input id="uploader" type="file" onChange={handleUpload} />
 
@@ -65,7 +65,7 @@ function Popup({ image, handleClose }) {
               </label>
             </div>
 
-            <div className="container" id="input-container">
+            <div className="my-container" id="input-container">
               <label>Title</label>
               <input
                 type="text"
@@ -89,7 +89,7 @@ function Popup({ image, handleClose }) {
           </div>
 
           {/* Save and delete button section */}
-          <div className="container" id="button-container">
+          <div className="my-container" id="button-container">
             <button onClick={handleSave} id="save">
               Save
             </button>

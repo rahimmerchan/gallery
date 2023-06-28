@@ -7,6 +7,7 @@ import Row from "/src/MainMenu/components/Row";
 import Foot from "/src/MainMenu/components/Foot";
 import ImageObject from "/src/classes/Imageobject.js";
 import "./Menu.css";
+import "./nav.css";
 
 function App() {
   const [popup, setPopup] = useState(false);
@@ -14,6 +15,20 @@ function App() {
 
   // (temporary) this will eventually be an api call that gets all of the images made by this author
   let images = [
+    new ImageObject(
+      "/assets/images/1.jpg",
+      "title",
+      "2023",
+      "aesthetic photo",
+      "jolin"
+    ),
+    new ImageObject(
+      "/assets/images/1.jpg",
+      "title",
+      "2023",
+      "aesthetic photo",
+      "jolin"
+    ),
     new ImageObject(
       "/assets/images/1.jpg",
       "title",
