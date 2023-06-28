@@ -3,8 +3,12 @@ import { useNavigate } from 'react-router-dom';
 function Header() {
   const navigate = useNavigate();
 
-  function openPage() {
-    navigate('/login');
+  function openPage(path) {
+    navigate(path);
+  }
+
+  function openSignUp() {
+    navigate('/signUp');
   }
   return (
     <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 ">
@@ -17,8 +21,8 @@ function Header() {
 
       
       <div className="col-md-3 text-end mx-3">
-      <button type="button" className="btn me-2 button-outline" onClick={openPage}>Login</button>
-        <button type="button" className="btn button-color button-outline"  onClick={openPage}>Sign-up</button>
+      <button type="button" className="btn me-2 button-outline" onClick={() => openPage('/login')}>Login</button>
+        <button type="button" className="btn button-color button-outline"  onClick={openSignUp}>Sign-up</button>
       </div>
     </header>
   );

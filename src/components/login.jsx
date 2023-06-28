@@ -2,8 +2,10 @@ import React from 'react';
 import './login.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [pw, setPw] = useState("");
 
@@ -30,29 +32,30 @@ function Login() {
         }
       };
 
-    const handelPassword = (e) => {
-        setPw(e.target.value);
-        const regex =
-          /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
-        if (regex.test(e.target.value)) {
-          setPwValid(true);
-        } else {
-          setPwValid(false);
-        }
-      };
+    const handlePassword = (e) => {
+      setPw(e.target.value);
+      const regex =
+        /^(?=.*\d{1})(?=.*[a-z]{1})(?=.*[A-Z]{1})(?=.*[!@#$%^&*{|}?~_=+.-]{0})(?=.*[a-zA-Z0-9@$!%*?&{|}~_=+.-])(?!.*\s).{8,20}$/;
+      if (regex.test(e.target.value)) {
+        setPwValid(true);
+
+      } else {
+        setPwValid(false);
+      }
+    };
 
     const onClickConfirmButton = () => {
-        if(email === User.email && pw === User.pw) {
-            alert('You are logged in!');
-        } else {
-            alert('Email or Password is incorrect');
-        }
+      // THIS SHOULD ALSO CHECK IF THE USER REGISTERING IS
+      // IN THE DATABASE AND IF THE CREDENTIALS MATH
+      
+      // TEMPORARY
+      navigate('/menu');
     }
 
     return (
         <div className = "page">
             <div className = "titleWrap">
-                Please enter you emaill and password       
+                Please enter you email and password       
             </div>
 
             <div className = "contentWrap">
@@ -78,7 +81,7 @@ function Login() {
                     className = "input" 
                     placeholder = "At least 8 characters including Uppercase, Lowercase, Number"
                     value = {pw} 
-                    onChange = {handelPassword}/>
+                    onChange = {handlePassword}/>
                 </div>
                 <div className = "errorMessageWrap">
                     {!pwValid && pw.length > 0 && (
@@ -89,7 +92,7 @@ function Login() {
             </div>
 
             <div>
-                <button onClick = {onClickConfirmButton} disabled = {notAllow} className = "bottomButton">Log in</button>
+                <button onClick = {onClickConfirmButton} disabled = {!(pwValid && emailValid)} className = "bottomButton">Log in</button>
             </div>
         </div>
     )

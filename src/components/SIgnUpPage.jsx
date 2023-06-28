@@ -2,22 +2,16 @@ import React from 'react';
 import './login.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function signUp() {
-    const [email, setEmail] = useState('');
+
+function SignUpPage() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
     const [pw, setPw] = useState("");
 
     const [emailValid, setEmailValid] = useState(false);
     const [pwValid, setPwValid] = useState(false);
-    const [notAllow, setNotAllow] = useState(true);
-
-    useEffect(() => {
-        if(emailValid && pwValid) {
-          setNotAllow(false);
-          return;
-        }
-        setNotAllow(true);
-      }, [emailValid, pwValid]);
   
     const handleEmail = (e) => {
         setEmail(e.target.value);
@@ -30,29 +24,31 @@ function signUp() {
         }
       };
 
-    const handelPassword = (e) => {
+    const handlePassword = (e) => {
         setPw(e.target.value);
         const regex =
-          /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
+          /^(?=.*\d{1})(?=.*[a-z]{1})(?=.*[A-Z]{1})(?=.*[!@#$%^&*{|}?~_=+.-]{0})(?=.*[a-zA-Z0-9@$!%*?&{|}~_=+.-])(?!.*\s).{8,20}$/;
         if (regex.test(e.target.value)) {
           setPwValid(true);
+
         } else {
           setPwValid(false);
         }
       };
 
     const onClickConfirmButton = () => {
-        if(email === User.email && pw === User.pw) {
-            alert('You are logged in!');
-        } else {
-            alert('Email or Password is incorrect');
-        }
+
+      // THIS SHOULD ALSO CHECK IF THE USER REGISTERING DOESN'T ALREADY EXIST
+      // IN THE DATABASE
+      
+      // TEMPORARY
+      navigate('/menu');
     }
 
     return (
         <div className = "page">
             <div className = "titleWrap">
-                Please enter you emaill and password       
+                Please enter you email and password       
             </div>
 
             <div className = "contentWrap">
@@ -78,7 +74,7 @@ function signUp() {
                     className = "input" 
                     placeholder = "At least 8 characters including Uppercase, Lowercase, Number"
                     value = {pw} 
-                    onChange = {handelPassword}/>
+                    onChange = {handlePassword}/>
                 </div>
                 <div className = "errorMessageWrap">
                     {!pwValid && pw.length > 0 && (
@@ -89,10 +85,10 @@ function signUp() {
             </div>
 
             <div>
-                <button onClick = {onClickConfirmButton} disabled = {notAllow} className = "bottomButton">Log in</button>
+                <button onClick = {onClickConfirmButton} disabled = {!(pwValid && emailValid)} className = "bottomButton">Log in</button>
             </div>
         </div>
     )
 }
 
-export default signUp;
+export default SignUpPage;
