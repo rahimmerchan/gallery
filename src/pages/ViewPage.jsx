@@ -127,9 +127,9 @@ function ViewPage() {
           <button id="right" onClick={() => paginate(1)}></button>
         )}
 
-        <div className="footer">
-          <p id="sitename">IMAGE VOYAGE</p>
-          <span className="line" />
+        <div className="footer" style = {{marginBottom: "1%"}}>
+          <img src ="/assets/images/image-1.png" style={{ maxWidth: '5%', height: 'auto' }}/>
+          <span className="fs-2 logo-name ">ImageVoyage</span>
         </div>
       </div>
     </>
