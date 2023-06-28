@@ -14,11 +14,7 @@
   z-index: 5;
   background: transparent;
   border: none;
-  opacity: 0.5;
-}
-
-.my-nav button:hover {
-  text-decoration: underline;
+  opacity: 0.6;
 }
 
 /* End of all nav bars */
@@ -30,7 +26,11 @@
 }
 
 #gallery-nav #gallery-button {
-  font-weight: bold;
+  font-weight: 400;
+  opacity: 1;
+}
+
+#gallery-nav #view-button:hover {
   opacity: 1;
 }
 
@@ -43,7 +43,11 @@
 }
 
 #view-nav #view-button {
-  font-weight: bold;
+  font-weight: 400;
+  opacity: 1;
+}
+
+#view-nav #gallery-button:hover {
   opacity: 1;
 }
 

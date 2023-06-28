@@ -92,7 +92,7 @@ function ViewPage() {
 
   return (
     <>
-      <div id="background">
+      <div className="background">
         <div className="my-nav" id="view-nav">
           <button id="gallery-button" onClick={() => navigate("/menu")}>
             My Gallery
@@ -116,14 +116,8 @@ function ViewPage() {
         {showCaption && <Caption info={images[page % images.length]} />}
         {showCaption && (
           <div
-            style={{
-              position: "absolute",
-              width: "100vw",
-              height: "100vh",
-              backgroundColor: "black",
-              opacity: "0.5",
-              zIndex: "3",
-            }}
+            className="background"
+            id="caption-background"
             onClick={handleCaption}
           ></div>
         )}
