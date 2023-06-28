@@ -1,4 +1,4 @@
-import { createConnection } from "mysql";
+/*import { createConnection } from "mysql";
 
 const db = createConnection({
   host: "database-1.c2dp1ljsjrom.us-east-1.rds.amazonaws.com",
@@ -14,4 +14,4 @@ db.connect(err=> {
     return;
   }
   console.log("Database Connected");
-});
+});*/
