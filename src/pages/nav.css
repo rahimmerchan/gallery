@@ -1,0 +1,54 @@
+/* All nav bars */
+
+.my-nav {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin-top: 30px;
+  margin-left: 100px;
+}
+
+.my-nav button {
+  margin-right: 50px;
+  font-size: 20px;
+  z-index: 5;
+  background: transparent;
+  border: none;
+  opacity: 0.6;
+}
+
+/* End of all nav bars */
+
+/* Gallery  */
+
+#gallery-nav button {
+  color: #343434;
+}
+
+#gallery-nav #gallery-button {
+  font-weight: 400;
+  opacity: 1;
+}
+
+#gallery-nav #view-button:hover {
+  opacity: 1;
+}
+
+/* End of gallery */
+
+/* View */
+
+#view-nav button {
+  color: #edeade;
+}
+
+#view-nav #view-button {
+  font-weight: 400;
+  opacity: 1;
+}
+
+#view-nav #gallery-button:hover {
+  opacity: 1;
+}
+
+/* End of view  */
