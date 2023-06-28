@@ -7,6 +7,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 function ViewPage() {
+
+  document.body.style.overflow = "hidden"
+  
   const navigate = useNavigate();
   // TEMPORARY
 
@@ -92,13 +95,18 @@ function ViewPage() {
 
   return (
     <>
-      <div className="background">
-        <div className="my-nav" id="view-nav">
-          <button id="gallery-button" onClick={() => navigate("/menu")}>
-            My Gallery
-          </button>
-          <button id="view-button">View</button>
-        </div>
+    <div id = "viewBackground" style = {{backgroundColor: "#292929", width:"100vw", height:"100vh"}}>
+      
+      <button id = "gallery" onClick = {() => navigate('/menu')} 
+        style = {{color:"white", opacity:"0.5", fontWeight:"normal"}}>My Gallery</button>
+
+      <button id = "view" style = {{color:"white", opacity:"1", fontWeight:"bold"}}>View</button>
+      
+      {/* Left slide button */}
+      {page > 0 && 
+        <button id="left" onClick={() => paginate(-1)}>
+        </button>
+      }
 
         {/* Left slide button */}
         {page > 0 && <button id="left" onClick={() => paginate(-1)}></button>}
@@ -132,6 +140,30 @@ function ViewPage() {
           <span className="line" />
         </div>
       </div>
+
+      {/* Caption button */}
+      {showCaption &&
+        <Caption info = {images[page%(images.length)]}/>
+      }
+      {showCaption &&
+        <div style = {{position: "absolute", width:"100vw", height:"100vh", backgroundColor:"black", opacity:"0.5", zIndex:"3"}}
+        onClick={handleCaption}></div>
+      }
+
+      
+      
+      {/* Right slide button */}
+      { page < images.length-1 && 
+        <button id="right" onClick={() => paginate(1)}>
+        </button>
+      }
+
+      <div className='footer'>
+        <img src ="/assets/images/image-1.png" style={{ maxWidth: '5%', height: 'auto', marginLeft:'3%' }}/>
+        <span className="fs-2 logo-name ">ImageVoyage</span>
+      </div>
+
+    </div>
     </>
   );
 }

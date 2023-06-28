@@ -10,6 +10,9 @@ import "./Menu.css";
 import "./nav.css";
 
 function App() {
+
+  document.body.style.overflow = "visible"
+
   const [popup, setPopup] = useState(false);
   const [imageSelected, setImageSelected] = useState(null);
 
