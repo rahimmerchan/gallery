@@ -26,6 +26,8 @@ a {
   width: 263px;
   height: 233px;
   margin-right: 150px;
+  border-width: 0px;
+  background-color: #F9F9F9;
 }
 
 img {
@@ -49,4 +51,29 @@ img {
   display: flex;
   margin-left: 150px;
   margin-top: 50px;
+}
+
+#gallery {
+  color: black;
+  opacity: 1;
+  font-size:20px;
+  position: absolute;
+  left: 5%;
+  top: 3%;
+  z-index: 5;
+  background: transparent;
+  border: none;
+  font-weight: bold;
+}
+
+#view {
+  color: black;
+  opacity: 0.5;
+  font-size:20px;
+  position: absolute;
+  left: 15%;
+  top: 3%;
+  z-index: 5;
+  background: transparent;
+  border: none;
 }

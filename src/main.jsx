@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import NewPage from './components/newPage.jsx';
 import ViewPage from './Pages/ViewPage.jsx';
-import Menu from './MainMenu/Menu.jsx'
+import Menu from './pages/Menu.jsx'
 import Login from './components/login.jsx';
 import SignUpPage from './components/SIgnUpPage.jsx'
 

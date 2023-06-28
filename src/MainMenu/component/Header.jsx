@@ -14,14 +14,16 @@ function Header() {
 
     return (
         <>
-            <ul id="navigation">
+            {/* <ul id="navigation">
                 <button
                     onClick={openPage1}
                 >My Gallery</button>
                 <button 
                     onClick={openPage2}
                 >View</button>
-            </ul>
+            </ul> */}
+            <button id = "gallery">My Gallery</button>
+            <button id = "view" onClick = {openPage2}>View</button>
         </>
     )
 }
