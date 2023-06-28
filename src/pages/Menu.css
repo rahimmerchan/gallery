@@ -10,6 +10,80 @@
   margin-left: 150px;
 }
 
+li {
+  display: inline;
+  margin-right: 85px;
+}
+
+.myGallery:hover {
+  text-decoration: underline;
+}
+
+.View:hover {
+  text-decoration: underline;
+}
+
+#title {
+  margin: 75px 0 75px 150px;
+}
+
+/* gave this button same properties as the images (.img) below */
+.upload {
+  background-color: rgb(194, 204, 217);
+  background-image: url("/assets/images/icon.png");
+  background-size: 100px !important;
+}
+
+.upload:hover {
+  border: 2px dashed black;
+  background-size: 110px !important;
+}
+
+/* ^^ here */
+.img,
+.upload {
+  width: 263px;
+  height: 233px;
+  margin-right: 150px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* to prevent it from moving back and forth when border is added/removed */
+  border: 2px dashed transparent;
+}
+
+.img:hover {
+  background-image: url("/assets/images/edit-icon.png") !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 2px dashed black;
+}
+
+.my-row {
+  display: flex;
+  margin-left: 150px;
+  margin-top: 40px;
+}
+
+#foot {
+  display: flex;
+  margin-left: 150px;
+  margin-top: 50px;
+}
+
+/* #root {
+  margin-bottom: auto;
+}
+
+#navigation {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin-top: 30px;
+  margin-left: 150px;
+}
+
 a {
   display: inline;
   margin-right: 85px;
@@ -51,7 +125,7 @@ img {
   display: flex;
   margin-left: 150px;
   margin-top: 50px;
-}
+} */
 
 #gallery {
   color: black;
@@ -76,4 +150,4 @@ img {
   z-index: 5;
   background: transparent;
   border: none;
-}
+} 
