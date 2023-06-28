@@ -9,6 +9,8 @@ import {
 import NewPage from './components/newPage.jsx';
 import ViewPage from './Pages/ViewPage.jsx';
 import Menu from './MainMenu/Menu.jsx'
+import Login from './components/login.jsx';
+import signUp from './components/signUp.jsx';
 
 const router = createBrowserRouter([
   {
@@ -21,7 +23,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <NewPage/>
+    element: <Login/>
+  },
+  {
+    path: "/signUp",
+    element: <signUp/>
   },
   {
     path: "/viewpage",

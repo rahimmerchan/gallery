@@ -1,9 +1,7 @@
 function NewPage() {
     return(
-        <h2>Next Page</h2>
-
-    );
-   
+        <h2>This is Test</h2>
+    )  
 }
 
 export default NewPage;

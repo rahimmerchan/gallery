@@ -3,7 +3,7 @@ import './login.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-function Login() {
+function signUp() {
     const [email, setEmail] = useState('');
     const [pw, setPw] = useState("");
 
@@ -95,4 +95,4 @@ function Login() {
     )
 }
 
-export default Login;
+export default signUp;
