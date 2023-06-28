@@ -9,6 +9,9 @@ import ImageObject from "/src/classes/Imageobject.js";
 import "./Menu.css";
 
 function App() {
+
+  document.body.style.overflow = "visible"
+
   const [popup, setPopup] = useState(false);
   const [imageSelected, setImageSelected] = useState(null);
 

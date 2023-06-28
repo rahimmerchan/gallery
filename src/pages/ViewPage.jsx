@@ -7,6 +7,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function ViewPage() {
+
+  document.body.style.overflow = "hidden"
+  
   const navigate = useNavigate();
   // TEMPORARY
 
@@ -76,10 +79,12 @@ function ViewPage() {
   
   return (
     <>
-    <div style = {{backgroundColor: "#292929", width:"100vw", height:"100vh"}}>
+    <div id = "viewBackground" style = {{backgroundColor: "#292929", width:"100vw", height:"100vh"}}>
       
-      <button id = "gallery" onClick = {() => navigate('/menu')}>My Gallery</button>
-      <button id = "view">View</button>
+      <button id = "gallery" onClick = {() => navigate('/menu')} 
+        style = {{color:"white", opacity:"0.5", fontWeight:"normal"}}>My Gallery</button>
+
+      <button id = "view" style = {{color:"white", opacity:"1", fontWeight:"bold"}}>View</button>
       
       {/* Left slide button */}
       {page > 0 && 
@@ -112,8 +117,8 @@ function ViewPage() {
       }
 
       <div className='footer'>
-        <p id="sitename">IMAGE VOYAGE</p>
-        <div style = {{width: "15%", height:"0px",border:"2px solid", color:"#9E9E9E"}}></div>
+        <img src ="/assets/images/image-1.png" style={{ maxWidth: '5%', height: 'auto', marginLeft:'3%' }}/>
+        <span className="fs-2 logo-name ">ImageVoyage</span>
       </div>
 
     </div>

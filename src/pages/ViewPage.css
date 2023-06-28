@@ -32,6 +32,7 @@
   position: absolute;
   right: 50px;
   height:48px;
+  width: 48px;
   transform: rotate(45deg);
   border-radius: 0;
   border-style: solid solid none none;
@@ -47,6 +48,7 @@
   left: 50px;
 
   height:48px;
+  width: 48px;
   transform: rotate(45deg);
   border-radius: 0;
   border-style: none none solid solid;
@@ -67,6 +69,15 @@
   z-index:1;
 }
 
+#viewBackground {
+  animation: background_shift;
+  animation-duration: 0.5s;
+}
+
+@keyframes background_shift {
+  from {background-color: white; }
+  to {background-color: #292929;}
+}
 /* ANIMATIONS */
 @keyframes right_image_exit {
   0% {left:10%}
@@ -114,29 +125,4 @@
   font-size:12px;
   color:#9E9E9E;
   margin: 1% 2% 1% 5%;
-}
-
-#gallery {
-  color: white;
-  opacity: 0.5;
-  font-size:20px;
-  position: absolute;
-  left: 5%;
-  top: 3%;
-  z-index: 5;
-  background: transparent;
-  border: none;
-}
-
-#view {
-  color: white;
-  opacity: 1;
-  font-size:20px;
-  position: absolute;
-  left: 15%;
-  top: 3%;
-  z-index: 5;
-  font-weight: bold;
-  background: transparent;
-  border: none;
 }
