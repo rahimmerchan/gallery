@@ -97,7 +97,7 @@ function ViewPage() {
           <button id="gallery-button" onClick={() => navigate("/menu")}>
             My Gallery
           </button>
-          <button id="view-button">Vie</button>
+          <button id="view-button">View</button>
         </div>
 
         {/* Left slide button */}
