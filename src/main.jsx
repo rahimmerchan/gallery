@@ -8,9 +8,9 @@ import {
 } from "react-router-dom";
 import NewPage from './components/newPage.jsx';
 import ViewPage from './Pages/ViewPage.jsx';
-import Menu from './pages/Menu.jsx'
+import Menu from './pages/Menu.jsx';
 import Login from './components/login.jsx';
-import SignUpPage from './components/SIgnUpPage.jsx'
+import SignUpPage from './components/SIgnUpPage.jsx';
 
 const router = createBrowserRouter([
   {
