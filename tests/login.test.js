@@ -10,7 +10,7 @@ test('sign in clicked should navigate to login page', () => {
 });
 
 // TESTING INVALID EMAIL
-test('', () => {
+test('should show email error', () => {
     render(<SignUp/>);
     fireEvent.change(screen.getByLabelText('Email'), { target: { value: 'jolin@example' } });
     fireEvent.change(screen.getByLabelText('Password'), { target: { value: 'Password456' } });
@@ -19,7 +19,7 @@ test('', () => {
 });
 
 // TESTING INVALID PASSWORD
-test('', () => {
+test('should show password error', () => {
     render(<SignUp/>);
     fireEvent.change(screen.getByLabelText('Email'), { target: { value: 'jolin@example.com' } });
     fireEvent.change(screen.getByLabelText('Password'), { target: { value: 'password456' } });
