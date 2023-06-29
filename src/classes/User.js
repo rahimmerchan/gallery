@@ -1,6 +1,6 @@
 export default class User {
-  constructor(name, password, images) {
-    this.name = name;
+  constructor(email, password, images) {
+    this.email = email;
     this.password = password;
     this.images = images; // This is a list of ImageObjects
   }
