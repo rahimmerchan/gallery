@@ -3,15 +3,19 @@ import './login.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 
 function SignUpPage() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
     const [pw, setPw] = useState("");
 
     const [emailValid, setEmailValid] = useState(false);
     const [pwValid, setPwValid] = useState(false);
+    const [values, setValues] = useState({
+      email: '',
+      pw: ''
+    })
   
     const handleEmail = (e) => {
         setEmail(e.target.value);
@@ -30,19 +34,16 @@ function SignUpPage() {
           /^(?=.*\d{1})(?=.*[a-z]{1})(?=.*[A-Z]{1})(?=.*[!@#$%^&*{|}?~_=+.-]{0})(?=.*[a-zA-Z0-9@$!%*?&{|}~_=+.-])(?!.*\s).{8,20}$/;
         if (regex.test(e.target.value)) {
           setPwValid(true);
-
         } else {
           setPwValid(false);
         }
       };
 
-    const onClickConfirmButton = () => {
-
-      // THIS SHOULD ALSO CHECK IF THE USER REGISTERING DOESN'T ALREADY EXIST
-      // IN THE DATABASE
-      
-      // TEMPORARY
-      navigate('/menu');
+    const handlesubmit = (e) => {
+      e.preventDefault();
+      axios.post('http://localhost:3002/signUp', values)
+      .then(res => console.log(res))
+      .then(err => console.log(err));
     }
 
     return (
@@ -50,7 +51,7 @@ function SignUpPage() {
             <div className = "titleWrap">
                 Please enter you email and password       
             </div>
-
+            <form onSubmit={handlesubmit}>
             <div className = "contentWrap">
                 <div className = "inputTitle">Email</div>
                 <div className = "inputWrap">
@@ -85,8 +86,9 @@ function SignUpPage() {
             </div>
 
             <div>
-                <button onClick = {onClickConfirmButton} disabled = {!(pwValid && emailValid)} className = "bottomButton">Log in</button>
+                <button onClick = {handlesubmit} disabled = {!(pwValid && emailValid)} className = "bottomButton">Sing Up</button>
             </div>
+          </form>
         </div>
     )
 }

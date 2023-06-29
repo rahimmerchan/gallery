@@ -3,10 +3,8 @@ import "./Popup.css";
 
 function Popup({ image, handleClose }) {
   const [photo, setPhoto] = useState(image ? image : null);
-
+  
   const handleSave = () => {
-    // send data to api
-    console.log(photo);
     handleClose();
   };
 
