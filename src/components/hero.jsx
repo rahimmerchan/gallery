@@ -82,7 +82,7 @@ function Hero() {
           <div>
             <a href="https://github.com/Jolin816" target="_blank">
               <img
-                src="/assets/images/image-12.png"
+                src="assets/images/jolin-icon-image.jpeg"
                 height="50px"
                 className="icon-space circular-button"
               />
