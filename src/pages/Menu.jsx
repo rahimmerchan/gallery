@@ -9,50 +9,14 @@ import ImageObject from "/src/classes/Imageobject.js";
 import "./Menu.css";
 import "./nav.css";
 
-function App() {
-
-  document.body.style.overflow = "visible"
+function Menu({ user }) {
+  document.body.style.overflow = "visible";
 
   const [popup, setPopup] = useState(false);
   const [imageSelected, setImageSelected] = useState(null);
 
   // (temporary) this will eventually be an api call that gets all of the images made by this author
   let images = [
-    new ImageObject(
-      "/assets/images/1.jpg",
-      "title",
-      "2023",
-      "aesthetic photo",
-      "jolin"
-    ),
-    new ImageObject(
-      "/assets/images/1.jpg",
-      "title",
-      "2023",
-      "aesthetic photo",
-      "jolin"
-    ),
-    new ImageObject(
-      "/assets/images/1.jpg",
-      "title",
-      "2023",
-      "aesthetic photo",
-      "jolin"
-    ),
-    new ImageObject(
-      "/assets/images/1.jpg",
-      "title",
-      "2023",
-      "aesthetic photo",
-      "jolin"
-    ),
-    new ImageObject(
-      "/assets/images/1.jpg",
-      "title",
-      "2023",
-      "aesthetic photo",
-      "jolin"
-    ),
     new ImageObject(
       "/assets/images/1.jpg",
       "title",
@@ -90,6 +54,7 @@ function App() {
     images = images.slice(2);
   } else {
     firstRow = images;
+    images = [];
   }
 
   // initializing 2D array for the rest of the rows
@@ -129,4 +94,4 @@ function App() {
     </div>
   );
 }
-export default App;
+export default Menu;

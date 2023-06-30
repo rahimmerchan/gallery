@@ -12,6 +12,8 @@ import Menu from './pages/Menu.jsx';
 import Login from './components/login.jsx';
 import SignUpPage from './components/SIgnUpPage.jsx';
 
+let user = "alice@gmail.com";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,13 +32,13 @@ const router = createBrowserRouter([
     element: <SignUpPage/>
   },
   {
-    path: "/viewpage",
-    element: <ViewPage/>
+    path: "/menu",
+    element: <Menu user={user}/>
   },
   {
-    path: "/menu",
-    element: <Menu/>
-  }
+    path: "/viewpage",
+    element: <ViewPage user={user}/>
+  },
 ]);
 
 
