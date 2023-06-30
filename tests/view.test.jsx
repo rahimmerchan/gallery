@@ -7,18 +7,15 @@ import userEvent from '@testing-library/user-event'
 
 describe ("View page test", () => {
   test('If left arrow is initially disabled', () => {
-
-
     render(
       <Router>
         <ViewPage/>
       </Router>
     );
-
     const buttons = screen.queryAllByRole('button')
     expect(buttons[4]).toBeUndefined()
   });
-
+  
   test('If gallery button navigates to gallery', () => {
 
     render(
