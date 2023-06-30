@@ -1,33 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Popup.css";
 
-function Popup({ image, handleClose, onAddPhoto, onDeletePhoto }) {
+function Popup({ image, handleClose }) {
   const [photo, setPhoto] = useState({
-    url: image ? image.url : "",
-    title: image ? image.title : "",
-    year: image ? image.year : "",
-    desc: image ? image.desc : ""
+    url: image ? image.url : null,
+    title: image ? image.title : null,
+    year: image ? image.year : null,
+    desc: image ? image.desc : null,
   });
 
-  useEffect(() => {
-    setPhoto({
-      url: image ? image.url : "",
-      title: image ? image.title : "",
-      year: image ? image.year : "",
-      desc: image ? image.desc : ""
-    });
-  }, [image]);
-
-  const titleInput = useRef();
-  const descriptionInput = useRef();
-  const imageInput = useRef();
   const [saveInProgress, setSaveInProgress] = useState(false);
 
-  function handleApi(e) {
+  function handlePhoto(e) {
     const file = e.target.files[0];
     setPhoto((prevPhoto) => ({
       ...prevPhoto,
-      url: URL.createObjectURL(file)
+      url: URL.createObjectURL(file),
     }));
   }
 
@@ -42,21 +30,19 @@ function Popup({ image, handleClose, onAddPhoto, onDeletePhoto }) {
       title: photo.title,
       year: photo.year,
       desc: photo.desc,
-      url: photo.url
+      url: photo.url,
     };
 
     try {
       const response = await fetch("http://localhost:5000/api/photos", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(newPhoto)
+        body: JSON.stringify(newPhoto),
       });
 
       if (response.ok) {
-        const data = await response.json();
-        onAddPhoto(data); // Update images state in the Menu component
         closePopup();
       } else {
         console.log("Error saving photo");
@@ -73,13 +59,12 @@ function Popup({ image, handleClose, onAddPhoto, onDeletePhoto }) {
       const response = await fetch(
         `http://localhost:5000/api/photos/${image.id}`,
         {
-          method: "DELETE"
+          method: "DELETE",
         }
       );
 
       if (response.ok) {
-        onDeletePhoto(image.id);
-        closePopup();
+        closePopup(); // Close the popup after deleting the photo
       } else {
         console.log("Error deleting photo");
       }
@@ -91,21 +76,21 @@ function Popup({ image, handleClose, onAddPhoto, onDeletePhoto }) {
   function handleTitle(event) {
     setPhoto((prevPhoto) => ({
       ...prevPhoto,
-      title: event.target.value
+      title: event.target.value,
     }));
   }
 
   function handleYear(event) {
     setPhoto((prevPhoto) => ({
       ...prevPhoto,
-      year: event.target.value
+      year: event.target.value,
     }));
   }
 
   function handleDesc(event) {
     setPhoto((prevPhoto) => ({
       ...prevPhoto,
-      desc: event.target.value
+      desc: event.target.value,
     }));
   }
 
@@ -120,7 +105,7 @@ function Popup({ image, handleClose, onAddPhoto, onDeletePhoto }) {
           {/* Photo section */}
           <div className="my-container" id="photo-container">
             {/* Photo uploader */}
-            <input id="uploader" type="file" onChange={handleApi} />
+            <input id="uploader" type="file" onChange={handlePhoto} />
 
             {/* Custom UI for the photo uploader*/}
             <label htmlFor="uploader" className="photo-upload">
@@ -143,22 +128,15 @@ function Popup({ image, handleClose, onAddPhoto, onDeletePhoto }) {
               type="text"
               value={photo.title}
               onChange={handleTitle}
-              ref={titleInput}
             ></input>
             <label>Year</label>
-            <input
-              type="text"
-              value={photo.year}
-              onChange={handleYear}
-              ref={descriptionInput}
-            ></input>
+            <input type="text" value={photo.year} onChange={handleYear}></input>
             <label>Description</label>
             <textarea
               rows="3"
               value={photo.desc}
               onChange={handleDesc}
               id="desc"
-              ref={imageInput}
             ></textarea>
           </div>
         </div>
@@ -173,9 +151,6 @@ function Popup({ image, handleClose, onAddPhoto, onDeletePhoto }) {
             Delete
           </button>
         </div>
-        <button className="close-button" onClick={handleClose}>
-          X
-        </button>
       </div>
     </div>
   );

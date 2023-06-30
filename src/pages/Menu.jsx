@@ -13,6 +13,8 @@ function Menu() {
   const [popup, setPopup] = useState(false);
   const [imageSelected, setImageSelected] = useState(null);
   const [images, setImages] = useState([]);
+  const [firstRow, setFirstRow] = useState([]);
+  const [rows, setRows] = useState([]);
 
   useEffect(() => {
     fetchPhotos();
@@ -33,33 +35,34 @@ function Menu() {
   function closePopup() {
     setPopup(false);
     setImageSelected(null); // Reset the selected image
+    fetchPhotos(); // Fetch the updated list of photos
   }
 
-  async function handleDeletePhoto() {
-    try {
-      const response = await fetch(
-        `http://localhost:5000/api/photos/${imageSelected.id}`,
-        {
-          method: "DELETE",
-        }
-      );
-
-      if (response.ok) {
-        fetchPhotos(); // Fetch the updated list of photos
-        closePopup(); // Close the popup after deleting the photo
-      } else {
-        console.log("Error deleting photo");
-      }
-    } catch (error) {
-      console.log("Error:", error.message);
+  useEffect(() => {
+    let restOfImages = [];
+    // initializing array for first row
+    if (images.length > 2) {
+      setFirstRow([images[0], images[1]]);
+      restOfImages = images.slice(2);
+    } else {
+      setFirstRow(images);
     }
-  }
 
-  function onAddPhoto(photoData) {
-    // Handle adding photo logic here
-    console.log("New photo data:", photoData);
-    // You can update the `images` state with the new photo if needed
-  }
+    // initializing 2D array for the rest of the rows
+    const tempRows = [];
+    for (let i = 0; i <= restOfImages.length / 3; i++) {
+      const row = [];
+      for (let j = 0; j < 3; j++) {
+        if (i * 3 + j >= restOfImages.length) {
+          break;
+        }
+        row.push(restOfImages[i * 3 + j]);
+      }
+      tempRows.push(row);
+    }
+    setRows(tempRows);
+    console.log("cringe");
+  }, [images]);
 
   return (
     <div className="my-body">
@@ -69,17 +72,17 @@ function Menu() {
       {/* the first row */}
       <div className="my-row">
         <Upload onAddPhoto={openPopup} />
-        <Row images={images} handleOpen={openPopup} />
+        <Row images={firstRow} handleOpen={openPopup} />
       </div>
 
-      {popup && (
-        <Popup
-        image={imageSelected}
-        handleClose={closePopup}
-        onAddPhoto={onAddPhoto} // Pass the onAddPhoto function
-        onDeletePhoto={handleDeletePhoto}
-      />
-      )}
+      {/* all following rows */}
+      {rows.map((row, i) => (
+        <div className="my-row" key={i}>
+          <Row images={row} handleOpen={openPopup} />
+        </div>
+      ))}
+
+      {popup && <Popup image={imageSelected} handleClose={closePopup} />}
 
       <Foot />
     </div>
