@@ -50,9 +50,9 @@ function Hero() {
             <div>
               <a href="https://github.com/ericnem" target="_blank">
                 <img
-                  src="/assets/images/image-12.png"
-                  height="40px"
-                  className="icon-space"
+                  src="/assets/images/eric-icon-image.png"
+                  height="50px"
+                  className="icon-space circular-button"
                   
                 />
               </a>
@@ -60,9 +60,9 @@ function Hero() {
             <div>
               <a href="https://github.com/rahimmerchan" target="_blank" >
                 <img
-                  src="/assets/images/image-12.png"
-                  height="40px"
-                  className="icon-space"
+                  src="/assets/images/rahim-icon-image.png"
+                  height="50px"
+                  className="icon-space circular-button"
                   
                 />
               </a>
@@ -71,7 +71,7 @@ function Hero() {
               <a href="https://github.com/bryanjiang117" target="_blank">
                 <img
                   src="/assets/images/image-12.png"
-                  height="40px"
+                  height="50px"
                   className="icon-space"
                   
                 />
@@ -81,7 +81,7 @@ function Hero() {
               <a href="https://github.com/Jolin816" target="_blank">
                 <img
                   src="/assets/images/image-12.png"
-                  height="40px"
+                  height="50px"
                   className="icon-space"
                   
                 />
@@ -91,7 +91,7 @@ function Hero() {
               <a href="https://github.com/torigood" target="_blank">
                 <img
                   src="/assets/images/image-12.png"
-                  height="40px"
+                  height="50px"
                   className="icon-space"
                 />
               </a>
