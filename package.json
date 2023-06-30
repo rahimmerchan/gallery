@@ -43,7 +43,7 @@
     "prettier": "^2.8.8",
     "vite": "^4.3.9",
     "vitest": "^0.32.2"
-  }
+  },
   "description": "This project comes with standard React dependencies, as well as the following libraries:\r   - reactjs-popup",
   "main": "db_index.js",
   "directories": {
@@ -52,3 +52,4 @@
   "keywords": [],
   "author": "",
   "license": "ISC"
+}
