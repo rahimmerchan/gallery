@@ -23,10 +23,3 @@ npm run test
 ```
 npm run build
 ```
-
-### To run API server
-```
-cd server (To select server folder)
-
-node server.js
-```
