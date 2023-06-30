@@ -6,7 +6,7 @@ test('sign in clicked should navigate to login page', () => {
     render(<App/>);
     const button = screen.getByText('Login');
     fireEvent.click(button);
-    expect(window.location.href).toBe("http://localhost:5173/login")
+    expect(window.location.href).toBe("http://localhost:5173/login");
 });
 
 // TESTING INVALID EMAIL

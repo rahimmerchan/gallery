@@ -7,7 +7,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 function ViewPage() {
+
   const navigate = useNavigate();
+  
   // TEMPORARY
 
   const img1 = new ImageObject(
