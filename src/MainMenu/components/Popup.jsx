@@ -19,6 +19,10 @@ function Popup({ image, handleClose }) {
     }));
   }
 
+  function handleCancel() {
+    closePopup();
+  }
+
   async function handleSave() {
     if (saveInProgress) {
       return;
@@ -149,6 +153,9 @@ function Popup({ image, handleClose }) {
 
           <button onClick={handleDelete} id="delete">
             Delete
+          </button>
+          <button onClick={handleCancel} id="cancel">
+            Cancel
           </button>
         </div>
       </div>
