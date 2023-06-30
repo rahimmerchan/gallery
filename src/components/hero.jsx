@@ -46,7 +46,7 @@ function Hero() {
         </div>
   
         <div className="container text-center">
-          <div className="d-flex justify-content-center" style={{ marginLeft: '65%', marginTop: '-95px'}}>
+          <div className="d-flex justify-content-center" style={{ marginLeft: '57%%', marginTop: '-60px'}}>
             <div>
               <a href="https://github.com/ericnem" target="_blank">
                 <img
