@@ -8,7 +8,7 @@ const app = express();
 app.use(cors({
   origin: 'http://localhost:5173' // Replace with your frontend URL
 }));
-const port = 5000;
+const port = 5001;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const photosPath = join(__dirname, "data", "photos.json");

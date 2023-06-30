@@ -34,7 +34,7 @@ function Popup({ image, handleClose }) {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/photos", {
+      const response = await fetch("http://localhost:5001/api/photos", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -57,7 +57,7 @@ function Popup({ image, handleClose }) {
   async function handleDelete() {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/photos/${image.id}`,
+        `http://localhost:5001/api/photos/${image.id}`,
         {
           method: "DELETE",
         }

@@ -21,7 +21,7 @@ function Menu() {
   }, []);
 
   function fetchPhotos() {
-    fetch("http://localhost:5000/api/photos")
+    fetch("http://localhost:5001/api/photos")
       .then((response) => response.json())
       .then((data) => setImages(data))
       .catch((error) => console.log("Error fetching photos", error));
