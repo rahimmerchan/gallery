@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Popup from "/src/MainMenu/components/Popup.jsx";
 import Header from "/src/MainMenu/components/Header";
 import Upload from "/src/MainMenu/components/Upload";
@@ -9,65 +9,56 @@ import ImageObject from "/src/classes/Imageobject.js";
 import "./Menu.css";
 import "./nav.css";
 
-function Menu({ user }) {
-  document.body.style.overflow = "visible";
-
+function Menu() {
   const [popup, setPopup] = useState(false);
   const [imageSelected, setImageSelected] = useState(null);
+  const [images, setImages] = useState([]);
 
-  // (temporary) this will eventually be an api call that gets all of the images made by this author
-  let images = [
-    new ImageObject(
-      "/assets/images/1.jpg",
-      "title",
-      "2023",
-      "aesthetic photo",
-      "jolin"
-    ),
-    new ImageObject(
-      "/assets/images/1.jpg",
-      "title",
-      "2023",
-      "aesthetic photo",
-      "jolin"
-    ),
-  ];
+  useEffect(() => {
+    fetchPhotos();
+  }, []);
+
+  function fetchPhotos() {
+    fetch("http://localhost:5000/api/photos")
+      .then((response) => response.json())
+      .then((data) => setImages(data))
+      .catch((error) => console.log("Error fetching photos", error));
+  }
 
   function openPopup(image) {
-    if (image) {
-      setImageSelected(image);
-    } else {
-      setImageSelected(null);
-    }
     setPopup(true);
+    setImageSelected(image);
   }
 
   function closePopup() {
     setPopup(false);
+    setImageSelected(null); // Reset the selected image
   }
 
-  // initializing the first row
-  let firstRow = [];
-  if (images.length > 2) {
-    firstRow.push(images[0]);
-    firstRow.push(images[1]);
-    images = images.slice(2);
-  } else {
-    firstRow = images;
-    images = [];
-  }
+  async function handleDeletePhoto() {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/photos/${imageSelected.id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
-  // initializing 2D array for the rest of the rows
-  let rows = [];
-  for (let i = 0; i <= images.length / 3; i++) {
-    const row = [];
-    for (let j = 0; j < 3; j++) {
-      if (i * 3 + j >= images.length) {
-        break;
+      if (response.ok) {
+        fetchPhotos(); // Fetch the updated list of photos
+        closePopup(); // Close the popup after deleting the photo
+      } else {
+        console.log("Error deleting photo");
       }
-      row.push(images[i * 3 + j]);
+    } catch (error) {
+      console.log("Error:", error.message);
     }
-    rows.push(row);
+  }
+
+  function onAddPhoto(photoData) {
+    // Handle adding photo logic here
+    console.log("New photo data:", photoData);
+    // You can update the `images` state with the new photo if needed
   }
 
   return (
@@ -78,20 +69,21 @@ function Menu({ user }) {
       {/* the first row */}
       <div className="my-row">
         <Upload onAddPhoto={openPopup} />
-        <Row images={firstRow} handleOpen={openPopup} />
+        <Row images={images} handleOpen={openPopup} />
       </div>
 
-      {/* all following rows */}
-      {rows.map((row, i) => (
-        <div className="my-row" key={i}>
-          <Row images={row} handleOpen={openPopup} />
-        </div>
-      ))}
-
-      {popup && <Popup image={imageSelected} handleClose={closePopup} />}
+      {popup && (
+        <Popup
+        image={imageSelected}
+        handleClose={closePopup}
+        onAddPhoto={onAddPhoto} // Pass the onAddPhoto function
+        onDeletePhoto={handleDeletePhoto}
+      />
+      )}
 
       <Foot />
     </div>
   );
 }
+
 export default Menu;

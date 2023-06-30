@@ -7,9 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.363.0",
@@ -24,6 +22,7 @@
     "moment": "^2.29.4",
     "multer": "^1.4.5-lts.1",
     "mysql": "^2.18.1",
+    "node": "^20.3.1",
     "node.js": "^0.0.1-security",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -45,5 +44,13 @@
     "prettier": "^2.8.8",
     "vite": "^4.3.9",
     "vitest": "^0.32.2"
-  }
+  },
+  "description": "This project comes with standard React dependencies, as well as the following libraries:\r   - reactjs-popup",
+  "main": "db_index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
