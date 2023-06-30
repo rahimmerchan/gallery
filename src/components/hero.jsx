@@ -91,7 +91,7 @@ function Hero() {
           <div>
             <a href="https://github.com/torigood" target="_blank">
               <img
-                src="/assets/images/image-12.png"
+                src="/assets/images/kwansik-icon-image.png"
                 height="50px"
                 className="icon-space circular-button"
               />

@@ -7,53 +7,36 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 function ViewPage() {
-
   const navigate = useNavigate();
-  
-  // TEMPORARY
-
-  const img1 = new ImageObject(
-    "https://i.natgeofe.com/n/0f6f9302-e62e-4841-bfd5-6cd8b96eac4a/POY1_16x9.jpg?w=1200",
-    "Eagles",
-    2019,
-    "Four eagles in the winter.",
-    "Eric"
-  );
-  const img2 = new ImageObject(
-    "https://i.natgeofe.com/n/1ac334a0-ac4e-4745-a292-169b0a349e8b/grand-peaks-mount-cook_16x9.jpg",
-    "Mountains",
-    2023,
-    "Misty mountains, black and white.",
-    "Eric"
-  );
-  const img3 = new ImageObject(
-    "https://mgm-website-production.oss-cn-hongkong.aliyuncs.com/uploads/2018/01/salvador-dali-1024.jpg",
-    "Dali",
-    1950,
-    "Famous portrait of artist Salvador Dali.",
-    "Eric"
-  );
-
-  // All images will be saved in a list of ImageObject elements
-  const images = [img1, img2, img3];
-
-  // State that keeps track of which image is currently being displayed
+  const [images, setImages] = useState([]);
   const [page, setPage] = useState(0);
   const [showCaption, setShowCaption] = useState(false);
 
-  // Handles inputs from left and right arrow buttons on keyboard
+  useEffect(() => {
+    fetchPhotos();
+  }, []);
+
+  function fetchPhotos() {
+    fetch("http://localhost:5000/api/photos")
+      .then((response) => response.json())
+      .then((data) => setImages(data))
+      .catch((error) => console.log("Error fetching photos", error));
+  }
+
+  const handleCaption = () => {
+    setShowCaption(!showCaption);
+  };
+
   const handleKeyDown = (event) => {
     const code = event.code;
-    if (code == "ArrowRight" && page < images.length - 1) {
+    if (code === "ArrowRight" && page < images.length - 1) {
       paginate(1);
-    } else if (code == "ArrowLeft" && page > 0) {
+    } else if (code === "ArrowLeft" && page > 0) {
       paginate(-1);
     }
   };
 
-  // Effect that adds an event listener everytime page is updated and removes
-  // the listener once unmounted.
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
@@ -61,15 +44,6 @@ function ViewPage() {
     };
   }, [page]);
 
-  const handleCaption = () => {
-    setShowCaption(!showCaption);
-  };
-
-  // paginate(newDirection) takes input of 1 or -1 depending on the direction
-  //   of the rotation. Updates page state and triggers slide transition.
-  // effects:
-  // *  affects state
-  // *  modifies css
   const paginate = (newDirection) => {
     if (newDirection > 0) {
       document.getElementById("imageContainer").style.animation =
@@ -102,19 +76,16 @@ function ViewPage() {
           <button id="view-button">View</button>
         </div>
 
-        {/* Left slide button */}
         {page > 0 && <button id="left" onClick={() => paginate(-1)}></button>}
 
-        {/* Image being Displayed */}
         <div id="imageContainer">
           <img id="toplight" src="assets/images/toplight.png"></img>
-          <img id="image" src={images[page].url}></img>
-          <button id="caption" onClick={handleCaption}>
-            {" "}
-          </button>
+          {images.length > 0 && (
+            <img id="image" src={images[page % images.length].url}></img>
+          )}
+          <button id="caption" onClick={handleCaption}></button>
         </div>
 
-        {/* Caption button */}
         {showCaption && <Caption info={images[page % images.length]} />}
         {showCaption && (
           <div
@@ -124,14 +95,13 @@ function ViewPage() {
           ></div>
         )}
 
-        {/* Right slide button */}
         {page < images.length - 1 && (
           <button id="right" onClick={() => paginate(1)}></button>
         )}
 
-        <div className="footer" style = {{marginBottom: "1%"}}>
-          <img src ="/assets/images/image-1.png" style={{ maxWidth: '5%', height: 'auto' }}/>
-          <span className="fs-2 logo-name ">ImageVoyage</span>
+          <div className="footer" style={{ marginBottom: "1%" }}>
+              <img src="/assets/images/image-1.png" style={{ maxWidth: '5%', height: 'auto' }} />
+              <span className="fs-2 logo-name ">ImageVoyage</span>
         </div>
       </div>
     </>

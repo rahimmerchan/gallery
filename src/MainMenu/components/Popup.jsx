@@ -1,141 +1,183 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Popup.css";
-import axios from 'axios';
 
-function Popup({ image, handleClose }) {
+function Popup({ image, handleClose, onAddPhoto, onDeletePhoto }) {
   const [photo, setPhoto] = useState({
-    title: "",
-    year: "",
-    desc: "",
-    url: image ? image.url : null
+    url: image ? image.url : "",
+    title: image ? image.title : "",
+    year: image ? image.year : "",
+    desc: image ? image.desc : ""
   });
-  const [selectedFile, setSelectedFile] = useState(null);
 
   useEffect(() => {
-    setPhoto(prevPhoto => ({
-      ...prevPhoto,
-      url: image ? image.url : null,
-    }));
+    setPhoto({
+      url: image ? image.url : "",
+      title: image ? image.title : "",
+      year: image ? image.year : "",
+      desc: image ? image.desc : ""
+    });
   }, [image]);
 
-  const handleSave = () => {
-    if (selectedFile) {
-      const fd = new FormData();
-      fd.append('image', selectedFile);
-      axios.post('/api/photos', fd)
-        .then(res => {
-          const imageUrl = res.data.url;
-          setPhoto(prevPhoto => ({
-            ...prevPhoto,
-            url: imageUrl,
-          }));
-          // Perform any necessary actions after successful upload
-        })
-        .catch(error => {
-          console.error('Error uploading image:', error);
-          // Handle error case
-        });
+  const titleInput = useRef();
+  const descriptionInput = useRef();
+  const imageInput = useRef();
+  const [saveInProgress, setSaveInProgress] = useState(false);
+
+  function handleApi(e) {
+    const file = e.target.files[0];
+    setPhoto((prevPhoto) => ({
+      ...prevPhoto,
+      url: URL.createObjectURL(file)
+    }));
+  }
+
+  async function handleSave() {
+    if (saveInProgress) {
+      return;
+    }
+
+    setSaveInProgress(true);
+
+    const newPhoto = {
+      title: photo.title,
+      year: photo.year,
+      desc: photo.desc,
+      url: photo.url
+    };
+
+    try {
+      const response = await fetch("http://localhost:5000/api/photos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newPhoto)
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        onAddPhoto(data); // Update images state in the Menu component
+        closePopup();
+      } else {
+        console.log("Error saving photo");
+      }
+    } catch (error) {
+      console.log("Error:", error.message);
+    } finally {
+      setSaveInProgress(false);
     }
   }
 
-  const handleDelete = () => {
-    setPhoto({
-      title: "",
-      year: "",
-      desc: "",
-      url: null
-    });
+  async function handleDelete() {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/photos/${image.id}`,
+        {
+          method: "DELETE"
+        }
+      );
+
+      if (response.ok) {
+        onDeletePhoto(image.id);
+        closePopup();
+      } else {
+        console.log("Error deleting photo");
+      }
+    } catch (error) {
+      console.log("Error:", error.message);
+    }
+  }
+
+  function handleTitle(event) {
+    setPhoto((prevPhoto) => ({
+      ...prevPhoto,
+      title: event.target.value
+    }));
+  }
+
+  function handleYear(event) {
+    setPhoto((prevPhoto) => ({
+      ...prevPhoto,
+      year: event.target.value
+    }));
+  }
+
+  function handleDesc(event) {
+    setPhoto((prevPhoto) => ({
+      ...prevPhoto,
+      desc: event.target.value
+    }));
+  }
+
+  function closePopup() {
     handleClose();
-  };
-
-  const handleUpload = event => {
-    if (event.target.files[0]) {
-      setSelectedFile(event.target.files[0]);
-      setPhoto(prevPhoto => ({
-        ...prevPhoto,
-        url: URL.createObjectURL(event.target.files[0]),
-      }));
-    }
-  }
-
-  const handleTitle = event => {
-    setPhoto(prevPhoto => ({
-      ...prevPhoto,
-      title: event.target.value,
-    }));
-  }
-
-  const handleYear = event => {
-    setPhoto(prevPhoto => ({
-      ...prevPhoto,
-      year: event.target.value,
-    }));
-  }
-
-  const handleDesc = event => {
-    setPhoto(prevPhoto => ({
-      ...prevPhoto,
-      desc: event.target.value,
-    }));
   }
 
   return (
-    <>
-      <div className="backdrop">
-        <div id="popup">
-          <div className="my-container" id="content-container">
-            {/* Photo section */}
-            <div className="my-container" id="photo-container">
-              {/* Photo uploader */}
-              <input id="uploader" type="file" onChange={handleUpload} />
+    <div className="backdrop">
+      <div id="popup">
+        <div className="my-container" id="content-container">
+          {/* Photo section */}
+          <div className="my-container" id="photo-container">
+            {/* Photo uploader */}
+            <input id="uploader" type="file" onChange={handleApi} />
 
-              {/* Custom UI for the photo uploader*/}
-              <label htmlFor="uploader" className="photo-upload">
-                {/*When photo is uploaded, it is displayed*/}
-                {photo && photo.url ? (
-                  <img className="photo" src={photo.url} alt="Uploaded" />
-                ) : (
-                  <img src="/assets/images/upload.svg" id="upload-symbol" alt="Upload" />
-                )}
-              </label>
-            </div>
-
-            <div className="my-container" id="input-container">
-              <label>Title</label>
-              <input
-                type="text"
-                value={photo.title}
-                onChange={handleTitle}
-              ></input>
-              <label>Year</label>
-              <input
-                type="text"
-                value={photo.year}
-                onChange={handleYear}
-              ></input>
-              <label>Description</label>
-              <textarea
-                rows="3"
-                value={photo.desc}
-                onChange={handleDesc}
-                id="desc"
-              ></textarea>
-            </div>
+            {/* Custom UI for the photo uploader*/}
+            <label htmlFor="uploader" className="photo-upload">
+              {/*When photo is uploaded, it is displayed*/}
+              {photo.url ? (
+                <img className="photo" src={photo.url} alt="Uploaded" />
+              ) : (
+                <img
+                  src="/assets/images/upload.svg"
+                  id="upload-symbol"
+                  alt="Upload"
+                />
+              )}
+            </label>
           </div>
 
-          {/* Save and delete button section */}
-          <div className="my-container" id="button-container">
-            <button onClick={handleSave} id="save">
-              Save
-            </button>
-
-            <button onClick={handleDelete} id="delete">
-              Delete
-            </button>
+          <div className="my-container" id="input-container">
+            <label>Title</label>
+            <input
+              type="text"
+              value={photo.title}
+              onChange={handleTitle}
+              ref={titleInput}
+            ></input>
+            <label>Year</label>
+            <input
+              type="text"
+              value={photo.year}
+              onChange={handleYear}
+              ref={descriptionInput}
+            ></input>
+            <label>Description</label>
+            <textarea
+              rows="3"
+              value={photo.desc}
+              onChange={handleDesc}
+              id="desc"
+              ref={imageInput}
+            ></textarea>
           </div>
         </div>
+
+        {/* Save and delete button section */}
+        <div className="my-container" id="button-container">
+          <button onClick={handleSave} id="save" disabled={saveInProgress}>
+            Save
+          </button>
+
+          <button onClick={handleDelete} id="delete">
+            Delete
+          </button>
+        </div>
+        <button className="close-button" onClick={handleClose}>
+          X
+        </button>
       </div>
-    </>
+    </div>
   );
 }
 
