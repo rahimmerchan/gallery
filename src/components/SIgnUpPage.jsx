@@ -18,6 +18,7 @@ function SignUpPage() {
     })
   
     const handleEmail = (e) => {
+        setValues({...values, email: e.target.value});
         setEmail(e.target.value);
         const regex =
           /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
@@ -29,7 +30,9 @@ function SignUpPage() {
       };
 
     const handlePassword = (e) => {
+        setValues({...values, pw: e.target.value});
         setPw(e.target.value);
+
         const regex =
           /^(?=.*\d{1})(?=.*[a-z]{1})(?=.*[A-Z]{1})(?=.*[!@#$%^&*{|}?~_=+.-]{0})(?=.*[a-zA-Z0-9@$!%*?&{|}~_=+.-])(?!.*\s).{8,20}$/;
         if (regex.test(e.target.value)) {
@@ -41,7 +44,7 @@ function SignUpPage() {
 
     const handlesubmit = (e) => {
       e.preventDefault();
-      axios.post('http://localhost:3002/signUp', values)
+      axios.post('http://localhost:8081', values)
       .then(res => console.log(res))
       .then(err => console.log(err));
     }

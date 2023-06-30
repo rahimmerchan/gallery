@@ -1,42 +1,79 @@
 import { useState, useEffect } from "react";
 import "./Popup.css";
+import axios from 'axios';
 
 function Popup({ image, handleClose }) {
-  const [photo, setPhoto] = useState(image ? image : null);
-  
+  const [photo, setPhoto] = useState({
+    title: "",
+    year: "",
+    desc: "",
+    url: image ? image.url : null
+  });
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  useEffect(() => {
+    setPhoto(prevPhoto => ({
+      ...prevPhoto,
+      url: image ? image.url : null,
+    }));
+  }, [image]);
+
   const handleSave = () => {
-    handleClose();
-  };
+    if (selectedFile) {
+      const fd = new FormData();
+      fd.append('image', selectedFile);
+      axios.post('/api/photos', fd)
+        .then(res => {
+          const imageUrl = res.data.url;
+          setPhoto(prevPhoto => ({
+            ...prevPhoto,
+            url: imageUrl,
+          }));
+          // Perform any necessary actions after successful upload
+        })
+        .catch(error => {
+          console.error('Error uploading image:', error);
+          // Handle error case
+        });
+    }
+  }
 
   const handleDelete = () => {
+    setPhoto({
+      title: "",
+      year: "",
+      desc: "",
+      url: null
+    });
     handleClose();
   };
 
-  function handleUpload(event) {
+  const handleUpload = event => {
     if (event.target.files[0]) {
-      setPhoto((prevPhoto) => ({
+      setSelectedFile(event.target.files[0]);
+      setPhoto(prevPhoto => ({
         ...prevPhoto,
         url: URL.createObjectURL(event.target.files[0]),
       }));
     }
   }
 
-  function handleTitle(event) {
-    setPhoto((prevPhoto) => ({
+  const handleTitle = event => {
+    setPhoto(prevPhoto => ({
       ...prevPhoto,
       title: event.target.value,
     }));
   }
 
-  function handleYear(event) {
-    setPhoto((prevPhoto) => ({
+  const handleYear = event => {
+    setPhoto(prevPhoto => ({
       ...prevPhoto,
       year: event.target.value,
     }));
   }
 
-  function handleDesc(event) {
-    setPhoto((prevPhoto) => ({
+  const handleDesc = event => {
+    setPhoto(prevPhoto => ({
       ...prevPhoto,
       desc: event.target.value,
     }));
@@ -56,9 +93,9 @@ function Popup({ image, handleClose }) {
               <label htmlFor="uploader" className="photo-upload">
                 {/*When photo is uploaded, it is displayed*/}
                 {photo && photo.url ? (
-                  <img className="photo" src={photo.url} />
+                  <img className="photo" src={photo.url} alt="Uploaded" />
                 ) : (
-                  <img src="/assets/images/upload.svg" id="upload-symbol" />
+                  <img src="/assets/images/upload.svg" id="upload-symbol" alt="Upload" />
                 )}
               </label>
             </div>
@@ -67,19 +104,19 @@ function Popup({ image, handleClose }) {
               <label>Title</label>
               <input
                 type="text"
-                value={photo ? photo.title : ""}
+                value={photo.title}
                 onChange={handleTitle}
               ></input>
               <label>Year</label>
               <input
                 type="text"
-                value={photo ? photo.year : ""}
+                value={photo.year}
                 onChange={handleYear}
               ></input>
               <label>Description</label>
               <textarea
                 rows="3"
-                value={photo ? photo.desc : ""}
+                value={photo.desc}
                 onChange={handleDesc}
                 id="desc"
               ></textarea>
