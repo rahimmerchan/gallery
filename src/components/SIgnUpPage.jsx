@@ -89,7 +89,7 @@ function SignUpPage() {
             </div>
 
             <div>
-                <button onClick = {handlesubmit} disabled = {!(pwValid && emailValid)} className = "bottomButton">Sing Up</button>
+                <button onClick = {handlesubmit} disabled = {!(pwValid && emailValid)} className = "bottomButton">Sign Up</button>
             </div>
           </form>
         </div>
