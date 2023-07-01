@@ -40,6 +40,10 @@ function Popup({ image, handleClose }) {
     }));
   }
 
+  function handleCancel() {
+    closePopup();
+  }
+
   async function handleSave() {
     if (saveInProgress) {
       return;
@@ -100,7 +104,7 @@ function Popup({ image, handleClose }) {
     try {
       console.log("deleting " + image.id);
       const response = await fetch(
-        `http://localhost:5001/api/photos/${image.id}`,
+        `http://localhost:5000/api/photos/${image.id}`,
         {
           method: "DELETE",
         }
