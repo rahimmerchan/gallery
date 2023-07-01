@@ -83,7 +83,9 @@ function ViewPage() {
           {images.length > 0 && (
             <img id="image" src={images[page % images.length].url}></img>
           )}
-          <button id="caption" onClick={handleCaption}></button>
+          {images.length > 0 && (
+            <button id="caption" onClick={handleCaption}></button>
+          )}
         </div>
 
         {showCaption && <Caption info={images[page % images.length]} />}
@@ -99,9 +101,12 @@ function ViewPage() {
           <button id="right" onClick={() => paginate(1)}></button>
         )}
 
-          <div className="footer" style={{ marginBottom: "1%" }}>
-              <img src="/assets/images/image-1.png" style={{ maxWidth: '5%', height: 'auto' }} />
-              <span className="fs-2 logo-name ">ImageVoyage</span>
+        <div className="footer" style={{ marginBottom: "1%" }}>
+          <img
+            src="/assets/images/image-1.png"
+            style={{ maxWidth: "5%", height: "auto" }}
+          />
+          <span className="fs-2 logo-name ">ImageVoyage</span>
         </div>
       </div>
     </>
