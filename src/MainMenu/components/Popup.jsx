@@ -100,7 +100,7 @@ function Popup({ image, handleClose }) {
     try {
       console.log("deleting " + image.id);
       const response = await fetch(
-        `http://localhost:5000/api/photos/${image.id}`,
+        `http://localhost:5001/api/photos/${image.id}`,
         {
           method: "DELETE",
         }
@@ -171,6 +171,9 @@ function Popup({ image, handleClose }) {
 
           <button onClick={handleDelete} id="delete">
             Delete
+          </button>
+          <button onClick={handleCancel} id="cancel">
+            Cancel
           </button>
         </div>
       </div>
