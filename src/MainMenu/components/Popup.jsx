@@ -2,14 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 import "./Popup.css";
 
 function Popup({ image, handleClose }) {
+  const inDatabase = image ? true : false;
+  const [saveInProgress, setSaveInProgress] = useState(false);
   const [photo, setPhoto] = useState({
     url: image ? image.url : null,
-    title: image ? image.title : null,
-    year: image ? image.year : null,
-    desc: image ? image.desc : null,
+    title: image ? image.title : "",
+    year: image ? image.year : "",
+    desc: image ? image.desc : "",
   });
-
-  const [saveInProgress, setSaveInProgress] = useState(false);
 
   function handlePhoto(e) {
     const file = e.target.files[0];
@@ -17,60 +17,6 @@ function Popup({ image, handleClose }) {
       ...prevPhoto,
       url: URL.createObjectURL(file),
     }));
-  }
-
-  async function handleSave() {
-    if (saveInProgress) {
-      return;
-    }
-
-    setSaveInProgress(true);
-
-    const newPhoto = {
-      title: photo.title,
-      year: photo.year,
-      desc: photo.desc,
-      url: photo.url,
-    };
-
-    try {
-      const response = await fetch("http://localhost:5000/api/photos", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newPhoto),
-      });
-
-      if (response.ok) {
-        closePopup();
-      } else {
-        console.log("Error saving photo");
-      }
-    } catch (error) {
-      console.log("Error:", error.message);
-    } finally {
-      setSaveInProgress(false);
-    }
-  }
-
-  async function handleDelete() {
-    try {
-      const response = await fetch(
-        `http://localhost:5000/api/photos/${image.id}`,
-        {
-          method: "DELETE",
-        }
-      );
-
-      if (response.ok) {
-        closePopup(); // Close the popup after deleting the photo
-      } else {
-        console.log("Error deleting photo");
-      }
-    } catch (error) {
-      console.log("Error:", error.message);
-    }
   }
 
   function handleTitle(event) {
@@ -92,6 +38,82 @@ function Popup({ image, handleClose }) {
       ...prevPhoto,
       desc: event.target.value,
     }));
+  }
+
+  async function handleSave() {
+    if (saveInProgress) {
+      return;
+    }
+    if (!(photo && photo.url)) {
+      console.log("CANNOT SAVE WITHOUT AN IMAGE");
+      return;
+    }
+    setSaveInProgress(true);
+
+    const newPhoto = {
+      title: photo.title,
+      year: photo.year,
+      desc: photo.desc,
+      url: photo.url,
+    };
+
+    try {
+      let response = null;
+      if (inDatabase) {
+        // if photo was already in database, use put method to edit it
+        console.log("editing " + image.id);
+        response = await fetch(`http://localhost:5000/api/photos/${image.id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(photo),
+        });
+      } else {
+        // if photo wasn't already in database, use post method to add a new photo
+        response = await fetch(`http://localhost:5000/api/photos/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(photo),
+        });
+      }
+      if (response.ok) {
+        closePopup();
+      } else {
+        console.log("Error saving photo");
+      }
+    } catch (error) {
+      console.log("Error:", error.message);
+    } finally {
+      setSaveInProgress(false);
+    }
+  }
+
+  async function handleDelete() {
+    if (!(photo && photo.url) || !inDatabase) {
+      closePopup();
+      return;
+    }
+
+    try {
+      console.log("deleting " + image.id);
+      const response = await fetch(
+        `http://localhost:5000/api/photos/${image.id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (response.ok) {
+        closePopup(); // Close the popup after deleting the photo
+      } else {
+        console.log("Error deleting photo");
+      }
+    } catch (error) {
+      console.log("Error:", error.message);
+    }
   }
 
   function closePopup() {

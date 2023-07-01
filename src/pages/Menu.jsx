@@ -61,7 +61,6 @@ function Menu() {
       tempRows.push(row);
     }
     setRows(tempRows);
-    console.log("cringe");
   }, [images]);
 
   return (
