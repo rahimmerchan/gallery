@@ -66,7 +66,7 @@ function Popup({ image, handleClose }) {
       if (inDatabase) {
         // if photo was already in database, use put method to edit it
         console.log("editing " + image.id);
-        response = await fetch(`http://localhost:5000/api/photos/${image.id}`, {
+        response = await fetch(`http://localhost:5001/api/photos/${image.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -75,7 +75,7 @@ function Popup({ image, handleClose }) {
         });
       } else {
         // if photo wasn't already in database, use post method to add a new photo
-        response = await fetch(`http://localhost:5000/api/photos/`, {
+        response = await fetch(`http://localhost:5001/api/photos/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -104,7 +104,7 @@ function Popup({ image, handleClose }) {
     try {
       console.log("deleting " + image.id);
       const response = await fetch(
-        `http://localhost:5000/api/photos/${image.id}`,
+        `http://localhost:5001/api/photos/${image.id}`,
         {
           method: "DELETE",
         }
