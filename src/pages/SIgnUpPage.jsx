@@ -43,10 +43,7 @@ function SignUpPage() {
       };
 
     const handlesubmit = (e) => {
-      e.preventDefault();
-      axios.post('http://localhost:8081', values)
-      .then(res => console.log(res))
-      .then(err => console.log(err));
+      navigate('/menu');
     }
 
     return (

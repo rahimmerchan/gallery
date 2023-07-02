@@ -41,9 +41,7 @@ app.post("/api/photos", async (req, res) => {
     const photos = JSON.parse(data);
     const newPhoto = req.body;
     newPhoto.id = generateUniqueId(); // Add a unique ID to the new photo
-
     photos.push(newPhoto);
-
     await fs.writeFile(photosPath, JSON.stringify(photos), "utf8");
     res.status(201).json(newPhoto);
   } catch (err) {
