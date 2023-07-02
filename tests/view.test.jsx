@@ -1,32 +1,29 @@
-import {render, screen, fireEvent} from '@testing-library/react';
-import { describe, expect, test } from 'vitest';
+import { render, screen, fireEvent } from "@testing-library/react";
+import { describe, expect, test } from "vitest";
 import ViewPage from "../src/pages/ViewPage";
-import {BrowserRouter as Router} from 'react-router-dom';
-import userEvent from '@testing-library/user-event'
+import { BrowserRouter as Router } from "react-router-dom";
+// import userEvent from "@testing-library/user-event";
 
-
-describe ("View page test", () => {
-  test('If left arrow is initially disabled', () => {
+describe("View page test", () => {
+  test("If left arrow is initially disabled", () => {
     render(
       <Router>
-        <ViewPage/>
+        <ViewPage />
       </Router>
     );
-    const buttons = screen.queryAllByRole('button')
-    expect(buttons[4]).toBeUndefined()
+    const buttons = screen.queryAllByRole("button");
+    expect(buttons[4]).toBeUndefined();
   });
-  
-  test('If gallery button navigates to gallery', () => {
 
+  test("If gallery button navigates to gallery", () => {
     render(
       <Router>
-        <ViewPage/>
+        <ViewPage />
       </Router>
     );
 
-    const button = screen.getByText('My Gallery');
+    const button = screen.getByText("My Gallery");
     fireEvent.click(button);
-    expect(window.location.href).toBe("http://localhost:3000/menu")
-
+    expect(window.location.href).toBe("http://localhost:3000/menu");
   });
-})
+});
