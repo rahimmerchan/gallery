@@ -6,11 +6,10 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import NewPage from './components/newPage.jsx';
 import ViewPage from '/src/Pages/ViewPage.jsx';
 import Menu from './pages/Menu.jsx';
 import Login from './components/login.jsx';
-import SignUpPage from './components/SIgnUpPage.jsx';
+import SignUpPage from './pages/SIgnUpPage.jsx';
 
 let user = "alice@gmail.com";
 
@@ -18,10 +17,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
-  },
-  {
-    path: "/newpage",
-    element: <NewPage/>
   },
   {
     path: "/login",
