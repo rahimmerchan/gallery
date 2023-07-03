@@ -126,6 +126,18 @@ body {
     left: 10%;
   }
 }
+
+@keyframes fade_in {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 /* END OF ANIMATIONS */
 
 #toplight {
@@ -168,4 +180,6 @@ body {
   z-index: -1;
   left: 30%;
   width: 30%;
+  animation-name: fade_in;
+  animation-duration: 5s;
 }

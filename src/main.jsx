@@ -6,10 +6,10 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import ViewPage from '/src/Pages/ViewPage.jsx';
+import ViewPage from '/src/pages/ViewPage.jsx';
 import Menu from './pages/Menu.jsx';
 import Login from './components/login.jsx';
-import SignUpPage from './pages/SIgnUpPage.jsx';
+import SignUpPage from './pages/SignUpPage.jsx';
 
 let user = "alice@gmail.com";
 
