@@ -125,7 +125,7 @@ function Popup({ image, handleClose }) {
   }
 
   return (
-    <div className="backdrop">
+    <div className="backdrop" data-testid="popup">
       <div id="popup">
         <div className="my-container" id="content-container">
           {/* Photo section */}
