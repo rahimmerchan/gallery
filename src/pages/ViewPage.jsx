@@ -66,6 +66,7 @@ function ViewPage() {
     }, 480);
   };
 
+  console.log(images.length);
   return (
     <>
       <div className="background">
@@ -85,6 +86,9 @@ function ViewPage() {
           )}
           {images.length > 0 && (
             <button id="caption" onClick={handleCaption}></button>
+          )}
+          {images.length == 0 && (
+            <img id = "empty" src ="assets/images/empty.png"></img>
           )}
         </div>
 
