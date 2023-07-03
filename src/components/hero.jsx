@@ -16,10 +16,10 @@ function Hero() {
           width="600"
           height="auto"
           loading="lazy"
-          style={{ marginTop: "-150px" }}
+          style={{ marginTop: "-130px" }}
         />
       </div>
-      <div className="col-lg-6 py-5">
+      <div className="col-lg-6 py-5" style = {{marginTop: "0px"}}>
         <h1
           className="display-5 fw-bold text-body-emphasis lh-1 mb-4 px-5"
           style={{ fontSize: "80px" }}
@@ -50,13 +50,14 @@ function Hero() {
       <div className="container text-center">
         <div
           className="d-flex justify-content-center"
-          style={{ marginLeft: "57%%", marginTop: "-60px" }}
+          style={{ marginLeft: "57%%", marginTop: "-40px" }}
         >
           <div>
             <a href="https://github.com/ericnem" target="_blank">
               <img
                 src="/assets/images/eric-icon-image.png"
                 height="50px"
+                width="53px"
                 className="icon-space circular-button"
               />
             </a>
@@ -66,6 +67,7 @@ function Hero() {
               <img
                 src="/assets/images/rahim-icon-image.png"
                 height="50px"
+                width="50px"
                 className="icon-space circular-button"
               />
             </a>
@@ -75,6 +77,7 @@ function Hero() {
               <img
                 src="/assets/images/bryan-icon-image.jpg"
                 height="50px"
+                width="45px"
                 className="icon-space circular-button"
               />
             </a>
@@ -84,6 +87,7 @@ function Hero() {
               <img
                 src="assets/images/jolin-icon-image.jpeg"
                 height="50px"
+                width="50px"
                 className="icon-space circular-button"
               />
             </a>
@@ -93,6 +97,7 @@ function Hero() {
               <img
                 src="/assets/images/kwansik-icon-image.png"
                 height="50px"
+                width="53px"
                 className="icon-space circular-button"
               />
             </a>

@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import Popup from "/src/MainMenu/components/Popup.jsx";
-import Header from "/src/MainMenu/components/Header";
-import Upload from "/src/MainMenu/components/Upload";
-import Title from "/src/MainMenu/components/Title";
-import Row from "/src/MainMenu/components/Row";
-import Foot from "/src/MainMenu/components/Foot";
-import ImageObject from "/src/classes/Imageobject.js";
+import Popup from "/src/gallery-components/Popup.jsx";
+import Header from "/src/gallery-components/Header";
+import Upload from "/src/gallery-components/Upload";
+import Title from "/src/gallery-components/Title";
+import Row from "/src/gallery-components/Row";
+import Foot from "/src/gallery-components/Foot";
 import "./Menu.css";
 import "./nav.css";
 

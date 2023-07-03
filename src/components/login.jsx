@@ -45,10 +45,6 @@ function Login() {
     };
 
     const onClickConfirmButton = () => {
-      // THIS SHOULD ALSO CHECK IF THE USER REGISTERING IS
-      // IN THE DATABASE AND IF THE CREDENTIALS MATH
-      
-      // TEMPORARY
       navigate('/menu');
     }
 
