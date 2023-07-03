@@ -1,9 +1,7 @@
 import React from 'react';
 import '../components/login.css';
 import { useState } from 'react';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 function SignUpPage() {
     const navigate = useNavigate();

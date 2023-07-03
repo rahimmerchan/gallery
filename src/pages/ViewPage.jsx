@@ -2,7 +2,6 @@ import "./ViewPage.css";
 import { useState, useEffect } from "react";
 import "reactjs-popup/dist/index.css";
 import Caption from "../components/caption.jsx";
-import ImageObject from "../classes/ImageObject.js";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
