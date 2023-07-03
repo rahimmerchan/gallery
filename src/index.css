@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Kanit');
 
+:root {
+  user-select: none;
+}
+
 .logo-name {
   font-family: 'Kanit', sans-serif;
   font-weight: bold;

@@ -4,7 +4,7 @@
 
 /* gave this button same properties as the images (.img) below */
 .upload {
-  background-color: rgb(194, 204, 217);
+  background-color: rgb(227, 233, 240);
   background-image: url("/assets/images/icon.png");
   background-size: 100px !important;
 }
