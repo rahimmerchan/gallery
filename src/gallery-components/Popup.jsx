@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Popup.css";
+import { toast } from "react-toastify";
 
 function Popup({ image, handleClose }) {
   const inDatabase = image ? true : false;
@@ -49,7 +50,14 @@ function Popup({ image, handleClose }) {
       return;
     }
     if (!(photo && photo.url)) {
-      console.log("CANNOT SAVE WITHOUT AN IMAGE");
+      toast.warn("Cannot save without uploading an image", {
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return;
     }
     setSaveInProgress(true);

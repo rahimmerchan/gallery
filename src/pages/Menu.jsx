@@ -5,6 +5,8 @@ import Upload from "/src/gallery-components/Upload";
 import Title from "/src/gallery-components/Title";
 import Row from "/src/gallery-components/Row";
 import Foot from "/src/gallery-components/Foot";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./Menu.css";
 import "./nav.css";
 
@@ -64,6 +66,7 @@ function Menu() {
 
   return (
     <div className="my-body">
+      <ToastContainer />
       <Header />
       <Title />
 
