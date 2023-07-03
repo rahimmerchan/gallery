@@ -2,9 +2,6 @@
 
 ## Project setup
 
-This project comes with standard React dependencies, as well as the following libraries:
-  - reactjs-popup
-
 ```
 npm install
 ```
@@ -24,7 +21,7 @@ npm run test
 npm run build
 ```
 
-### To run API server
+### To run API server (Important!)
 ```
 cd server (To select server folder)
 
